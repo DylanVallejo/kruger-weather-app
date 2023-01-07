@@ -14,6 +14,7 @@ const  Weather = () => {
                 `${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`
             );
             const json = await request.json();
+            setWeather(json);
             
         } catch (error) {
             console.log(error)
@@ -34,7 +35,7 @@ const  Weather = () => {
         <div>
             <WeatherForm onChangeCity={handleChangeCity} />
             <div>
-                hola
+               <h3>city :</h3>{weather ? weather.current.temp_c : 'loading...'}
             </div>
         </div>
     )
