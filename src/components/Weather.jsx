@@ -10,17 +10,13 @@ const  Weather = () => {
     const loadInfo = async ( city  = 'london') => {
         console.log(`${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`)
         try {
-            // const request = await fetch(`${process.env.REACT_APP_URL}$key=${process.env.REACT_APP_KEY}&q=${city}`)
             const request = await fetch(
                 `${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`
             );
             const json = await request.json();
-            console.log(request)  
             
-            console.log(json)  
-            console.log('json')   
         } catch (error) {
-            // console.log(error)
+            console.log(error)
             console.log('errors')
             
         }
@@ -28,8 +24,8 @@ const  Weather = () => {
     
     
     const handleChangeCity = (city) => {
-        setWeather(null)
         loadInfo(city);
+        setWeather(null)
     }
     console.log(weather)
     console.log('weather')
@@ -38,9 +34,7 @@ const  Weather = () => {
         <div>
             <WeatherForm onChangeCity={handleChangeCity} />
             <div>
-                {process.env.REACT_APP_URL} variable
-                info
-                {/* {weather.current.condition.text} */}
+                hola
             </div>
         </div>
     )
