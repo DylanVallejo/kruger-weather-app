@@ -1,12 +1,23 @@
-import { useState } from "react"
+
+import { useState,useEffect } from "react"
 import WeatherForm from "./WeatherForm"
+import WeatherMainInfo from "./WeatherMainInfo";
 
 
 const  Weather = () => {
 
     const [weather, setWeather] = useState(null)
     
+    useEffect(() => {
+        loadInfo();
+    }, []);
     
+    useEffect(() => {
+        document.title = `Weather | ${weather?.location.name ?? ""}`;
+    }
+    , [weather]);
+        
+
     const loadInfo = async ( city  = 'london') => {
         console.log(`${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`)
         try {
@@ -14,12 +25,11 @@ const  Weather = () => {
                 `${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`
             );
             const json = await request.json();
+            console.log(json)
             setWeather(json);
             
         } catch (error) {
-            console.log(error)
-            console.log('errors')
-            
+            console.log(error)        
         }
     }
     
@@ -28,15 +38,15 @@ const  Weather = () => {
         loadInfo(city);
         setWeather(null)
     }
+    
     console.log(weather)
     console.log('weather')
     
     return (
         <div>
             <WeatherForm onChangeCity={handleChangeCity} />
-            <div>
-               <h3>city :</h3>{weather ? weather.current.temp_c : 'loading...'}
-            </div>
+            <WeatherMainInfo weather= {weather} /> 
+    
         </div>
     )
 }
