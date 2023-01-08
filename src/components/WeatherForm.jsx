@@ -4,9 +4,9 @@ import { useState } from "react";
         
         const [city, setCity] = useState('')
         
-        const  handleChange = ( event ) => {
-            const value = event.target.value;
-            if (value !== "") setCity(value);
+        const  handleChange = ( e ) => {
+            // const value = event.target.value;
+            if (e !== "") setCity(e.target.value);
         }
         
         const handleSubmit = async ( e ) => {
