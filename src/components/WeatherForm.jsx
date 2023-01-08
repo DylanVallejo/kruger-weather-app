@@ -1,11 +1,16 @@
 import { useState } from "react";
+import Input from '@mui/material/Input';
+
+import styles from "./WeatherForm.module.css"
+const ariaLabel = { 'aria-label': 'description' };
+
 
     const  WeatherForm = ({onChangeCity}) => {
         
         const [city, setCity] = useState('')
         
         const  handleChange = ( e ) => {
-            // const value = event.target.value;
+  
             if (e !== "") setCity(e.target.value);
         }
         
@@ -15,9 +20,10 @@ import { useState } from "react";
         }
         
         return (
-            <form onSubmit={handleSubmit}> 
-                <input type="text" placeholder="City" onChange={ handleChange } />
-                
+            <form  className={styles.formContainer} onSubmit={handleSubmit}> 
+                {/* <input type="text" placeholder="City" onChange={ handleChange } /> */}
+                <p >Ingrese una ciudad: </p>
+                <Input type="text" placeholder="City" inputProps={ariaLabel}  onChange={ handleChange } />
             </form>
         )
     }

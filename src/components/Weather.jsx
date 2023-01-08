@@ -27,7 +27,6 @@ const  Weather = () => {
             const json = await request.json();
             console.log(json)
             setWeather(json);
-            
         } catch (error) {
             console.log(error)        
         }
@@ -46,7 +45,6 @@ const  Weather = () => {
         <div>
             <WeatherForm onChangeCity={handleChangeCity} />
             <WeatherMainInfo weather= {weather} /> 
-    
         </div>
     )
 }
