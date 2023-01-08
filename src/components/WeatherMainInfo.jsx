@@ -1,28 +1,33 @@
 import React from 'react'
-
+import styles from './WeatherMainInfo.module.css'
 const  WeatherMainInfo= ( {weather}) => {
     
     
     return (
     
-        <div>
-            <div>
-                {weather?.location.name}
-            </div>
-            <div>
-                {weather?.location.country}
-            </div>
-            <div>
-                <div>
-                    <img src={ `http:${weather?.current.condition.icon}`} width="128" alt = {weather?.current.condition.text} />    
-                    
+        <div className={styles.ContainerMainInfo}>
+            <div className={styles.infoContainer}>
+                <div className={styles.locationName}>
+                    <p className={styles.pmainInfo}><span className={styles.spanInfo}>City:</span> {weather?.location.name} </p>
+                </div>
+                <div className={styles.country}>
+                    <p className={styles.pmainInfo}><span className={styles.spanInfo}>Country:</span> {weather?.location.country} </p>
                 </div>
                 <div>
                     <div>
-                        {weather?.current.condition.text}
+                        <div>
+                            <img  className={styles.imgContainerCondition} src={ `http:${weather?.current.condition.icon}`} width="128" alt = {weather?.current.condition.text} />    
+                        </div>
+                        <p><span className={styles.spanInfo}>Condition: </span>{weather?.current.condition.text}</p>
                     </div>
+                    
                     <div>
-                        {weather?.current.temp_c} celcius
+                        <div>
+                            <p className={styles.pmainInfo}><span className={styles.spanInfo}>Temp:</span> {weather?.current.temp_c} grados celcius</p>
+                        </div>
+                        <div>
+                            <p className={styles.pmainInfo}><span className={styles.spanInfo}> Temp:</span> {weather?.current.temp_f} grados farenheit</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -36,6 +41,7 @@ const  WeatherMainInfo= ( {weather}) => {
                 allowFullScreen="" 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
+                className={styles.mapaInfo}
             >
                 
             </iframe>
